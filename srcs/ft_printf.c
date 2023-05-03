@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 13:52:51 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/03 14:16:33 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,38 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-typedef struct 
+/*
+typedef struct s_flag
+{
+
+}	t_flag;
+*/
 
 void	print_char(char **s, int *count)
 {
 	write(1, (*s)++, 1);
-	++count;
+	(*count)++;
+}
+
+void	print_str(const char *s, int *count)
+{
+	while (*s)
+	{
+		write(1, s++, 1);
+		(*count)++;
+	}
 }
 
 void	print_arg(char **s, va_list *args, int *count)
 {
-	t_flag	flag;
-
+	//t_flag	flag;
 	(*s)++;
-	parse_flag(s, args, &flag);
-
+	//parse_flag(s, args, &flag);
+	if (*(*s)++ == 's')
+	{
+		print_str(va_arg(*args, char *), count);
+		//(*s)++;
+	}
 }
 
 int	parse(char *s, va_list *args)
@@ -59,6 +76,9 @@ int	ft_printf(const char *s, ...)
 
 int	main(void)
 {
-	ft_printf("abcdefg", "abcd");
+	int	ret;
+	
+	ret = ft_printf("abcdefg%s%s", "abcd", "abc");
+	printf("\n%d\n", ret);
 	return (0);
 }
