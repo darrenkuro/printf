@@ -6,13 +6,13 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 18:37:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 18:40:58 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/03 19:11:28 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_null(int *count)
+void	write_null(int *count)
 {
 	write(1, NULL_STR, NULL_LEN);
 	*count += NULL_LEN;

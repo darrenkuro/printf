@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 19:06:02 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/03 19:12:07 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	format_ptr(void *p, int *count);
 void	format_nbr(int n, char *base, int *count);
 void	format_nbr_u(unsigned int n, char *base, int *count);
 
-void	format_null(int *count);
+void	write_null(int *count);
 
 #endif

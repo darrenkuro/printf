@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 18:42:57 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/03 19:12:42 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	format_str(char *s, int *count)
 {
 	if (!s)
 	{
-		format_null(count);
+		write_null(count);
 		return ;
 	}
 	while (*s)
