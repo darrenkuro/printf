@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 11:42:43 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/03 13:52:51 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	print_char(char **s, int *count)
 
 void	print_arg(char **s, va_list *args, int *count)
 {
+	t_flag	flag;
+
+	(*s)++;
+	parse_flag(s, args, &flag);
 
 }
 
