@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 15:43:37 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 18:37:07 by dlu              ###   ########.fr       */
+/*   Created: 2023/05/03 17:25:46 by dlu               #+#    #+#             */
+/*   Updated: 2023/05/03 18:30:22 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdio.h>
-#include <stddef.h>
-
-// doesn't work!
-// %.5-10s
 
 int	main(void)
 {
-	printf("%-10s%%-10s\n", "abcdefg");
-	printf("%-10.5s%%-10.5s\n", "abcdefg");
-	printf("%.5s%%.5s\n", "abcdefg");
-	printf("%+10d%%+10d\n", 42);
-	printf("%10d%%10d\n", 42);
-	printf("%#x%%#x\n", 42);
-	printf("%x%%x\n", 42);
-	printf("%s%%s NULL\n", (char *) NULL);
-	printf("%10d%%10d\n", 42);
-	printf("%10d%%10d\n", 42);
+	int	ret;
+
+	ret = ft_printf("%c%srest\n", 'h', "abc");
+	printf("%d\n", ret);
 	return (0);
 }

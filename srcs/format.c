@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   format.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 15:43:37 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 18:37:07 by dlu              ###   ########.fr       */
+/*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
+/*   Updated: 2023/05/03 18:42:57 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stddef.h>
+#include "ft_printf.h"
 
-// doesn't work!
-// %.5-10s
-
-int	main(void)
+void	format_char(int c, int *count)
 {
-	printf("%-10s%%-10s\n", "abcdefg");
-	printf("%-10.5s%%-10.5s\n", "abcdefg");
-	printf("%.5s%%.5s\n", "abcdefg");
-	printf("%+10d%%+10d\n", 42);
-	printf("%10d%%10d\n", 42);
-	printf("%#x%%#x\n", 42);
-	printf("%x%%x\n", 42);
-	printf("%s%%s NULL\n", (char *) NULL);
-	printf("%10d%%10d\n", 42);
-	printf("%10d%%10d\n", 42);
-	return (0);
+	write(1, &c, 1);
+	(*count)++;
 }
+
+void	format_str(char *s, int *count)
+{
+	if (!s)
+	{
+		format_null(count);
+		return ;
+	}
+	while (*s)
+	{
+		write(1, s++, 1);
+		(*count)++;
+	}
+}
+
+/*
+void	format_ptr(void *p, int *count)
+{
+	
+}
+*/

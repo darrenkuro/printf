@@ -1,5 +1,6 @@
 NAME=libftprintf.a
-SRC=test.c
+SRC=ft_printf.c print.c format.c utils.c
+HEADERDIR=includes
 CC=cc
 RM=/bin/rm -f
 CFLAGS=-Wall -Wextra -Werror
@@ -11,7 +12,7 @@ $(NAME): $(OBJ)
 	$(AR) $@ $^
 
 srcs/%.o: srcs/%.c
-	$(CC) $(CFLAGS) -c -o $@ $< -I ../includes
+	$(CC) $(CFLAGS) -c -o $@ $< -I $(HEADERDIR)
 
 all: $(NAME)
 
