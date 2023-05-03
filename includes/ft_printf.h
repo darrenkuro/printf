@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 19:12:07 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/03 19:28:55 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ void	parse_flag(char **s, va_list *args, t_format *format);
 void	format_char(int c, int *count);
 void	format_str(char *s, int *count);
 void	format_ptr(void *p, int *count);
-void	format_nbr(int n, char *base, int *count);
-void	format_nbr_u(unsigned int n, char *base, int *count);
+void	format_nbr(int n, const char *base, int *count);
+void	format_nbr_u(unsigned int n, const char *base, int *count);
 
-void	write_null(int *count);
+int		write_null(int *count);
+int		write_ull(unsigned long long n, int *count);
 
 #endif

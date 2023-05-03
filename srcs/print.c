@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 18:25:42 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/03 19:27:02 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	print_arg(char **s, va_list *args, int *count)
 		format_char(va_arg(*args, int), count);
 	else if (**s == 's')
 		format_str(va_arg(*args, char *), count);
-	/*
-	else if (**s == 'p')
-		format_ptr(va_arg(*args, void *), count);
+	//else if (**s == 'p')
+	//	format_ptr(va_arg(*args, void *), count);
 	else if (**s == 'd' || **s == 'i')
 		format_nbr(va_arg(*args, int), DEC, count);
+	/*
 	else if (**s == 'u')
 		format_nbr_u(va_arg(*args, unsigned int), DEC, count);
 	else if (**s == 'x')
