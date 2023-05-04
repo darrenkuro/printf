@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 06:14:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 06:46:52 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 07:23:24 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_strlen(char *s, t_format format)
 		return (0);
 	i = -1;
 	while (s[++i])
-		if (format.type =='s' && i >= format.precision)
+		if (format.type == 's' && i >= format.precision)
 			return (i);
 	return (i);
 }
