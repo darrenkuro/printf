@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 14:14:42 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 14:29:18 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	print_nbr_u(unsigned int n, char *base, int *count, t_format format);
 
 int		ft_strlen(char *s, t_format format);
 int		print_padding(char c, int len);
+void	load_nbr(long long)
 
 #endif
