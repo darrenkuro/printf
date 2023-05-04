@@ -1,5 +1,5 @@
 NAME=libftprintf.a
-SRC=ft_printf.c parse_format.c print_format.c print_arg.c print_utils.c
+SRC=ft_printf.c parse_format.c parse_nbr.c print_format.c print_arg.c print_utils.c
 HEADERDIR=includes
 CC=cc
 RM=/bin/rm -f
@@ -16,7 +16,7 @@ srcs/%.o: srcs/%.c
 
 all: $(NAME)
 
-bonus: $(NAME)
+bonus1: $(NAME)
 
 clean:
 	$(RM) $(OBJ)

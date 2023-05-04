@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 16:18:19 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 17:22:12 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 # define HEXU		"0123456789ABCDEF"
 # define HEXL		"0123456789abcdef"
 # define NULL_STR	"(null)"
+# define NULL_PTR	"(nil)"
 # define NULL_LEN	6
-# define NBR_SIZE	21
+# define NBR_SIZE	23
 # define LL_MIN		-9223372036854775808
 # define LL_MINLEN	20
 # define INT_MIN	-2147483648
@@ -58,5 +59,8 @@ int		ft_strlen(char *s, t_format format);
 int		print_padding(char c, int len);
 void	load_nbr(int n, const char *base, t_format *format);
 int		len_nbr(int n, t_format *format);
+void	load_nbr_u(unsigned int n, const char *base, t_format *format);
+int		len_nbr_u(unsigned long long n, t_format *format);
+void	load_nbr_ptr(void *p, const char *base, t_format *format);
 
 #endif
