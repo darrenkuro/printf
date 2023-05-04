@@ -16,6 +16,8 @@ srcs/%.o: srcs/%.c
 
 all: $(NAME)
 
+bonus: $(NAME)
+
 clean:
 	$(RM) $(OBJ)
 
@@ -24,4 +26,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
