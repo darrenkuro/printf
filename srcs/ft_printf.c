@@ -6,15 +6,20 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 06:37:23 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 16:11:05 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* Resets the format to the initial state. */
+/* Resets the format parameters to the initial states. */
 static void	reset_format(t_format *format)
 {
+	int	i;
+
+	i = -1;
+	while (++i < NBR_SIZE)
+		format->num[i] = 0;
 	format->type = 0;
 	format->padding = ' ';
 	format->minus = 0;
@@ -24,6 +29,7 @@ static void	reset_format(t_format *format)
 	format->dot = 0;
 	format->width = 0;
 	format->precision = 0;
+	format->base = 10;
 }
 
 static int	parse(char *s, va_list *args)

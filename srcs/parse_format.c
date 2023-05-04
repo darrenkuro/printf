@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 07:22:34 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 16:18:13 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 /* Parse '-' and '0', '0' is ignored when '-' is present. */
 static void	parse_flags(char **s, t_format *format)
 {
-	while (*(*s)++ == '-')
+	while (**s == '-' && (*s)++)
 		format->minus = 1;
 	if (format->minus)
 		return ;
-	while (*(*s)++ == '0')
+	while (**s == '0' && (*s)++)
 		format->padding = '0';
 }
 
@@ -27,7 +27,7 @@ static void	parse_width(char **s, va_list *args, t_format *format)
 {
 	if (**s == '*')
 	{
-		format->width = va_arg(args, int);
+		format->width = va_arg(*args, int);
 		(*s)++;
 		return ;
 	}
@@ -47,7 +47,7 @@ static void	parse_precision(char **s, va_list *args, t_format *format)
 	}
 	if (**s == '*')
 	{
-		format->precision = va_arg(args, int);
+		format->precision = va_arg(*args, int);
 		if (format->precision < 0)
 		{
 			format->precision = 0;
@@ -68,5 +68,7 @@ void	parse_format(char **s, va_list *args, t_format *format)
 	parse_width(s, args, format);
 	parse_precision(s, args, format);
 	format->type = **s;
+	if (**s == 'p' || **s == 'x' || **s == 'X')
+		format->base = 16;
 	(*s)++;
 }

@@ -1,5 +1,5 @@
 NAME=libftprintf.a
-SRC=ft_printf.c print.c format.c write.c
+SRC=ft_printf.c parse_format.c print_format.c print_arg.c print_utils.c
 HEADERDIR=includes
 CC=cc
 RM=/bin/rm -f
