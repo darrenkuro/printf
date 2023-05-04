@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 06:37:04 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 14:14:42 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@
 # include <stdarg.h>
 # include <unistd.h>
 
+# define DEC		"0123456789"
+# define HEXU		"0123456789ABCDEF"
+# define HEXL		"0123456789abcdef"
+# define NULL_STR	"(null)"
+# define NULL_LEN	6
+# define NBR_SIZE	21
+
 typedef struct s_format
 {
 	char	type;
 	char	padding;
+	char	num[NBR_SIZE];
 	int		minus;
 	int		plus;
 	int		hash;
@@ -28,12 +36,6 @@ typedef struct s_format
 	int		width;
 	int		precision;
 }	t_format;
-
-# define DEC		"0123456789"
-# define HEXU		"0123456789ABCDEF"
-# define HEXL		"0123456789abcdef"
-# define NULL_STR	"(null)"
-# define NULL_LEN	6
 
 int		ft_printf(const char *s, ...);
 
