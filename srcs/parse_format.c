@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write.c                                            :+:      :+:    :+:   */
+/*   parse_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 18:37:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 19:14:54 by dlu              ###   ########.fr       */
+/*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
+/*   Updated: 2023/05/04 05:39:41 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	write_null(int *count)
+void	parse_format(char **s, va_list *args, t_format *format)
 {
-	write(1, NULL_STR, NULL_LEN);
-	*count += NULL_LEN;
-	return (1);
+	
 }

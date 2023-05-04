@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 19:32:24 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 06:37:04 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 typedef struct s_format
 {
 	char	type;
+	char	padding;
 	int		minus;
 	int		plus;
-	int		zero;
 	int		hash;
 	int		space;
 	int		dot;
+	int		width;
+	int		precision;
 }	t_format;
 
 # define DEC		"0123456789"
@@ -35,17 +37,15 @@ typedef struct s_format
 
 int		ft_printf(const char *s, ...);
 
-void	print_char(char **s, int *count);
-void	print_arg(char **s, va_list *args, int *count);
-void	parse_flag(char **s, va_list *args, t_format *format);
+void	parse_format(char **s, va_list *args, t_format *format);
+void	print_arg(va_list *args, t_format format, int *count);
 
-void	format_char(int c, int *count);
-void	format_str(char *s, int *count);
-void	format_ptr(void *p, int *count);
-void	format_nbr(int n, const char *base, int *count);
-void	format_nbr_u(unsigned int n, const char *base, int *count);
+int		print_sc(char *s, int *count, t_format format);
+void	print_ptr(void *p, int *count, t_format format);
+void	print_nbr(int n, char *base, int *count, t_format format);
+void	print_nbr_u(unsigned int n, char *base, int *count, t_format format);
 
-int		write_null(int *count);
-int		write_ull(unsigned long long n, int *count);
+int		ft_strlen(char *s, t_format format);
+int		print_padding(char c, int len);
 
 #endif

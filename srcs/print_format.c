@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format.c                                           :+:      :+:    :+:   */
+/*   print_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/03 19:30:11 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 06:52:39 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_char(int c, int *count)
+/* Handles output for s, c, %. */
+int	print_sc(char *s, int *count, t_format format)
 {
-	write(1, &c, 1);
-	(*count)++;
-}
+	int	len;
+	int	i;
 
-void	format_str(char *s, int *count)
-{
-	if (!s && write_null(count))
+	if (!s && print_sc(NULL_STR, count, format))
 		return ;
-	while (*s)
-	{
-		write(1, s++, 1);
-		(*count)++;
-	}
+	if (format.type == 'c')
+		len = 1;
+	else if (format.type == 's')
+		len = ft_strlen(s, format);
+	if (!format.minus)
+		count += print_padding(format.padding, format.width - len);
+	i = -1;
+	while (++i < len)
+		write(1, s[i], 1);
+	count += len;
+	if (format.minus)
+		count += print_padding(format.padding, format.width - len);
+	return (1);
 }
 
-void	format_nbr(int n, const char *base, int *count)
+void	print_nbr(int n, char *base, int *count, t_format format)
 {
 	
 }
