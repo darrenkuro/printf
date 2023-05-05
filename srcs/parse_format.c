@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 00:14:47 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 02:36:19 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,10 @@ void	parse_format(char **s, va_list *args, t_format *format)
 	format->type = **s;
 	if (**s == 'p' || **s == 'x' || **s == 'X')
 		format->base = 16;
+	if (**s != 's' && **s != 'c' && format->dot)
+	{
+		format->padding = '0';
+		format->width = format->precision;
+	}
 	(*s)++;
 }

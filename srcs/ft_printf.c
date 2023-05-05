@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 17:41:59 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 02:17:24 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	reset_format(t_format *format)
 	format->neg = 0;
 }
 
+/* Parsing the template string char by char. */
 static int	parse(char *s, va_list *args)
 {
 	int			count;

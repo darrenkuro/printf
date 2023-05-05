@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 02:13:34 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 02:42:40 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	print_str(char *s, int *count, t_format format)
 	int	len;
 	int	i;
 
-	if (!s && print_str(NULL_STR, count, format))
+	if (!s && !format.dot && print_str(NULL_STR, count, format))
+		return (0);
+	else if (!s && format.precision >= 6 && print_str(NULL_STR, count, format))
 		return (0);
 	len = ft_strlen(s, format);
-	if (!format.minus && format.type != 's' && format.type != 'c' && format.dot)
-		*count += print_padding('0', format.precision - len);
-	else if (!format.minus)
+	if (!format.minus)
 		*count += print_padding(format.padding, format.width - len);
 	i = -1;
 	while (++i < len)
