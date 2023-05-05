@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 16:18:13 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 00:14:47 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ static void	parse_flags(char **s, t_format *format)
 {
 	while (**s == '-' && (*s)++)
 		format->minus = 1;
+	while (**s == '+' && (*s)++)
+		format->plus = 1;
+	while (**s == '#' && (*s)++)
+		format->hash = 1;
+	while (**s == ' ' && (*s)++)
+		format->space = 1;
 	if (format->minus)
 		return ;
 	while (**s == '0' && (*s)++)

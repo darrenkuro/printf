@@ -16,7 +16,7 @@ srcs/%.o: srcs/%.c
 
 all: $(NAME)
 
-bonus1: $(NAME)
+bonus: $(NAME)
 
 clean:
 	$(RM) $(OBJ)

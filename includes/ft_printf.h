@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 17:27:37 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 02:13:52 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdarg.h>
 # include <unistd.h>
+
+# include <stdio.h>
 
 # define DEC		"0123456789"
 # define HEXU		"0123456789ABCDEF"
@@ -25,6 +27,7 @@
 # define INT_MIN	-2147483648
 # define INT_MINLEN	11
 
+typedef unsigned long long	t_ull;
 typedef struct s_format
 {
 	char	type;
@@ -38,6 +41,7 @@ typedef struct s_format
 	int		width;
 	int		precision;
 	int		base;
+	int		neg;
 }	t_format;
 
 int		ft_printf(const char *s, ...);
@@ -48,14 +52,15 @@ void	print_arg(va_list *args, t_format format, int *count);
 int		print_str(char *s, int *count, t_format format);
 void	print_char(char c, int *count, t_format format);
 void	print_ptr(void *p, int *count, t_format format);
-void	print_nbr(int n, char *base, int *count, t_format format);
+void	print_nbr(long long n, char *base, int *count, t_format format);
 
 int		ft_strlen(char *s, t_format format);
 int		print_padding(char c, int len);
+void	print_prefix(int *count, t_format *format);
 int		len_nbr(int n, t_format *format);
 int		len_nbr_u(unsigned long long n, t_format *format);
 void	load_nbr(int n, const char *base, t_format *format);
-void	load_nbr_u(unsigned int n, const char *base, t_format *format);
+void	load_nbr_u(unsigned long long n, const char *base, t_format *format);
 void	load_nbr_ptr(void *p, const char *base, t_format *format);
 
 #endif

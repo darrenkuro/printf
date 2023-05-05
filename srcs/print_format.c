@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 17:23:17 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 02:13:34 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	print_char(char c, int *count, t_format format)
 {
 	if (!format.minus)
-		count += print_padding(format.padding, format.width - 1);
+		*count += print_padding(format.padding, format.width - 1);
 	write(1, &c, 1);
 	(*count)++;
 	if (format.minus)
-		count += print_padding(format.padding, format.width - 1);
+		*count += print_padding(format.padding, format.width - 1);
 }
 
 /* Handles output for %s, %c, %%. */
@@ -31,23 +31,26 @@ int	print_str(char *s, int *count, t_format format)
 	if (!s && print_str(NULL_STR, count, format))
 		return (0);
 	len = ft_strlen(s, format);
-	if (!format.minus)
-		count += print_padding(format.padding, format.width - len);
+	if (!format.minus && format.type != 's' && format.type != 'c' && format.dot)
+		*count += print_padding('0', format.precision - len);
+	else if (!format.minus)
+		*count += print_padding(format.padding, format.width - len);
 	i = -1;
 	while (++i < len)
 		write(1, &s[i], 1);
 	*count += len;
 	if (format.minus)
-		count += print_padding(format.padding, format.width - len);
+		*count += print_padding(format.padding, format.width - len);
 	return (1);
 }
 
-void	print_nbr(int n, char *base, int *count, t_format format)
+void	print_nbr(long long n, char *base, int *count, t_format format)
 {
 	if (format.type == 'd' || format.type == 'i')
-		load_nbr(n, base, &format);
+		load_nbr((int) n, base, &format);
 	else if (format.type == 'x' || format.type == 'X' || format.type == 'u')
-		load_nbr_u((unsigned int) n, base, &format);
+		load_nbr_u((unsigned long long) n, base, &format);
+	print_prefix(count, &format);
 	print_str(format.num, count, format);
 }
 

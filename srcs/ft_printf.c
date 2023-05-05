@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 16:32:04 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/04 17:41:59 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	reset_format(t_format *format)
 	format->width = 0;
 	format->precision = 0;
 	format->base = 10;
+	format->neg = 0;
 }
 
 static int	parse(char *s, va_list *args)

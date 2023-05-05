@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 06:14:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/04 17:22:17 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 01:56:28 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ int	len_nbr(int n, t_format *format)
 	len = 0;
 	if (n == 0)
 		return (++len);
-	if (n == INT_MIN)
-		return (INT_MINLEN);
-	if (n < 0 && ++len)
-		n = -n;
-	while (n > 0 && ++len)
+	while (n != 0 && ++len)
 		n /= format->base;
 	return (len);
 }
@@ -38,9 +34,9 @@ void	load_nbr(int n, const char *base, t_format *format)
 	num = format->num;
 	len = len_nbr(n, format) + 1;
 	if (n < 0)
-		num[0] = '-';
+		format->neg = 1;
 	num[--len] = '\0';
-	while (--len >= 0 && num[len] != '-')
+	while (--len >= 0)
 	{
 		if (n > 0)
 			num[len] = base[n % format->base];
@@ -64,7 +60,7 @@ int	len_nbr_u(unsigned long long n, t_format *format)
 }
 
 /* Load the number string into format. */
-void	load_nbr_u(unsigned int n, const char *base, t_format *format)
+void	load_nbr_u(unsigned long long n, const char *base, t_format *format)
 {
 	char	*num;
 	int		len;
