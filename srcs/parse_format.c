@@ -6,12 +6,13 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 22:10:22 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:25:37 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/* Parse the flags in order. */
 static void	parse_flags(char **s, t_format *format)
 {
 	while (**s == '#' && (*s)++)
@@ -30,6 +31,7 @@ static void	parse_flags(char **s, t_format *format)
 		format->zero = 0;
 }
 
+/* Parse the width of the format. */
 static void	parse_width(char **s, va_list *args, t_format *format)
 {
 	if (**s == '*')
@@ -45,6 +47,7 @@ static void	parse_width(char **s, va_list *args, t_format *format)
 	}
 }
 
+/* Parse the precision of the format. */
 static void	parse_precision(char **s, va_list *args, t_format *format)
 {
 	if (**s == '.')
@@ -69,6 +72,7 @@ static void	parse_precision(char **s, va_list *args, t_format *format)
 	}
 }
 
+/* Parse the format and set its parameters. */
 void	parse_format(char **s, va_list *args, t_format *format)
 {
 	parse_flags(s, format);
