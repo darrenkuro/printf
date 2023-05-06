@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 02:17:24 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 20:15:05 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 /* Resets the format parameters to the initial states. */
 static void	reset_format(t_format *format)
 {
-	int	i;
-
-	i = -1;
-	while (++i < NBR_SIZE)
-		format->num[i] = 0;
 	format->type = 0;
+	if (format->nbr)
+		free(format->nbr);
+	format->nbr = NULL;
 	format->padding = ' ';
+	format->hash = 0;
 	format->minus = 0;
 	format->plus = 0;
-	format->hash = 0;
 	format->space = 0;
+	format->zero = 0;
 	format->dot = 0;
 	format->width = 0;
 	format->precision = 0;
@@ -59,6 +58,7 @@ static int	parse(char *s, va_list *args)
 	return (count);
 }
 
+/* Mimic the system printf function, works with cspdiuxX%. */
 int	ft_printf(const char *s, ...)
 {
 	int		count;

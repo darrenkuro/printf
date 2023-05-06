@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 02:13:52 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 20:28:36 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-
 # include <stdio.h>
 
 # define DEC		"0123456789"
@@ -23,7 +22,6 @@
 # define HEXL		"0123456789abcdef"
 # define NULL_STR	"(null)"
 # define NULL_PTR	"(nil)"
-# define NBR_SIZE	23
 # define INT_MIN	-2147483648
 # define INT_MINLEN	11
 
@@ -32,11 +30,12 @@ typedef struct s_format
 {
 	char	type;
 	char	padding;
-	char	num[NBR_SIZE];
+	char	*num;
+	int		hash;
 	int		minus;
 	int		plus;
-	int		hash;
 	int		space;
+	int		zero;
 	int		dot;
 	int		width;
 	int		precision;
@@ -54,7 +53,7 @@ void	print_char(char c, int *count, t_format format);
 void	print_ptr(void *p, int *count, t_format format);
 void	print_nbr(long long n, char *base, int *count, t_format format);
 
-int		ft_strlen(char *s, t_format format);
+int		ft_strlenf(char *s, t_format format);
 int		print_padding(char c, int len);
 void	print_prefix(int *count, t_format *format);
 int		len_nbr(int n, t_format *format);

@@ -6,27 +6,28 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 02:36:19 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 19:59:38 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* Parse '-' and '0', '0' is ignored when '-' is present. */
 static void	parse_flags(char **s, t_format *format)
 {
+	while (**s == '#' && (*s)++)
+		format->hash = 1;
 	while (**s == '-' && (*s)++)
 		format->minus = 1;
 	while (**s == '+' && (*s)++)
 		format->plus = 1;
-	while (**s == '#' && (*s)++)
-		format->hash = 1;
 	while (**s == ' ' && (*s)++)
 		format->space = 1;
-	if (format->minus)
-		return ;
 	while (**s == '0' && (*s)++)
-		format->padding = '0';
+		format->zero = 1;
+	if (format->plus)
+		format->space = 0;
+	if (format->minus)
+		format->zero = 0;
 }
 
 static void	parse_width(char **s, va_list *args, t_format *format)
@@ -46,6 +47,8 @@ static void	parse_width(char **s, va_list *args, t_format *format)
 
 static void	parse_precision(char **s, va_list *args, t_format *format)
 {
+	//if (**s != '.')
+	//	return ;
 	if (**s == '.')
 	{
 		format->dot = 1;
@@ -55,11 +58,9 @@ static void	parse_precision(char **s, va_list *args, t_format *format)
 	{
 		format->precision = va_arg(*args, int);
 		if (format->precision < 0)
-		{
 			format->precision = 0;
-			format->dot = 0;
-		}
 		(*s)++;
+		return ;
 	}
 	while (**s >= '0' && **s <= '9')
 	{
@@ -81,5 +82,7 @@ void	parse_format(char **s, va_list *args, t_format *format)
 		format->padding = '0';
 		format->width = format->precision;
 	}
+	if (format->neg)
+		(format->width)--;
 	(*s)++;
 }

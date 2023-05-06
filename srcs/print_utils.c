@@ -6,14 +6,14 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 06:14:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 01:47:47 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 20:02:32 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /* Returns the length to be printed for string. */
-int	ft_strlen(char *s, t_format format)
+int	ft_strlenf(char *s, t_format format)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 06:14:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 02:22:37 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 20:28:33 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	load_nbr(int n, const char *base, t_format *format)
 	char	*num;
 	int		len;
 
-	num = format->num;
 	len = len_nbr(n, format) + 1;
+	format->num = malloc(len * sizeof (char));
+	num = format->num;
 	if (n < 0)
 		format->neg = 1;
 	num[--len] = '\0';
@@ -47,7 +48,7 @@ void	load_nbr(int n, const char *base, t_format *format)
 }
 
 /* Return the length of the nbr string, excluding '\0'. */
-int	len_nbr_u(unsigned long long n, t_format *format)
+int	len_nbr_u(t_ull n, t_format *format)
 {
 	int	len;
 
@@ -60,13 +61,14 @@ int	len_nbr_u(unsigned long long n, t_format *format)
 }
 
 /* Load the number string into format. */
-void	load_nbr_u(unsigned long long n, const char *base, t_format *format)
+void	load_nbr_u(t_ull n, const char *base, t_format *format)
 {
 	char	*num;
 	int		len;
 
-	num = format->num;
 	len = len_nbr_u(n, format) + 1;
+	format->num = malloc(len * sizeof(char));
+	num = format->num;
 	num[--len] = '\0';
 	while (--len >= 0)
 	{

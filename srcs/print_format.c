@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 02:42:40 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/05 20:12:51 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	print_str(char *s, int *count, t_format format)
 		return (0);
 	else if (!s && format.precision >= 6 && print_str(NULL_STR, count, format))
 		return (0);
-	len = ft_strlen(s, format);
+	len = ft_strlenf(s, format);
 	if (!format.minus)
 		*count += print_padding(format.padding, format.width - len);
 	i = -1;
@@ -46,10 +46,20 @@ int	print_str(char *s, int *count, t_format format)
 
 void	print_nbr(long long n, char *base, int *count, t_format format)
 {
+	int	len;
+	int	printed;
+
 	if (format.type == 'd' || format.type == 'i')
 		load_nbr((int) n, base, &format);
 	else if (format.type == 'x' || format.type == 'X' || format.type == 'u')
 		load_nbr_u((unsigned long long) n, base, &format);
+	len = ft_strlenf(format.num, format);
+	if (format.width)
+	{
+		printed = print_padding(' ', format.width - len);
+		*count += printed;
+		format.width -= printed;
+	}
 	print_prefix(count, &format);
 	print_str(format.num, count, format);
 }

@@ -1,6 +1,8 @@
 NAME=libftprintf.a
 SRC=ft_printf.c parse_format.c parse_nbr.c print_format.c print_arg.c print_utils.c
-HEADERDIR=includes
+HDIR=includes
+LIB=libft/libft.a
+LIBDIR=libft
 CC=cc
 RM=/bin/rm -f
 CFLAGS=-Wall -Wextra -Werror
@@ -9,10 +11,12 @@ OBJ=$(addprefix srcs/,$(_OBJ))
 AR=ar rcs
 
 $(NAME): $(OBJ)
+	@make -C $(LIBDIR) all >/dev/null
+	@cp $(LIB) $(NAME)
 	$(AR) $@ $^
 
 srcs/%.o: srcs/%.c
-	$(CC) $(CFLAGS) -c -o $@ $< -I $(HEADERDIR)
+	$(CC) $(CFLAGS) -c -o $@ $< -I $(HDIR) -I $(LIBDIR)
 
 all: $(NAME)
 
