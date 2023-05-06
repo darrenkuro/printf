@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 19:59:38 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 21:50:46 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	parse_width(char **s, va_list *args, t_format *format)
 
 static void	parse_precision(char **s, va_list *args, t_format *format)
 {
-	//if (**s != '.')
-	//	return ;
 	if (**s == '.')
 	{
 		format->dot = 1;
@@ -62,6 +60,8 @@ static void	parse_precision(char **s, va_list *args, t_format *format)
 		(*s)++;
 		return ;
 	}
+	if (**s >= '0' && **s <= '9')
+		format->precision = 0;
 	while (**s >= '0' && **s <= '9')
 	{
 		format->precision = (format->precision * 10) + **s - '0';
@@ -77,12 +77,11 @@ void	parse_format(char **s, va_list *args, t_format *format)
 	format->type = **s;
 	if (**s == 'p' || **s == 'x' || **s == 'X')
 		format->base = 16;
-	if (**s != 's' && **s != 'c' && format->dot)
-	{
+	if (**s == 'd' || **s == 'i')
+		format->signed_nbr = 1;
+	if (format->zero)
 		format->padding = '0';
-		format->width = format->precision;
-	}
-	if (format->neg)
-		(format->width)--;
+	if (format->dot && format->zero)
+		format->padding = ' ';
 	(*s)++;
 }

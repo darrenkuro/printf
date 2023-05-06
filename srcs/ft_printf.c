@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 20:15:05 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 21:41:03 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@
 static void	reset_format(t_format *format)
 {
 	format->type = 0;
-	if (format->nbr)
-		free(format->nbr);
-	format->nbr = NULL;
+	format->num = NULL;
+	format->nbr = 0;
+	format->signed_nbr = 0;
 	format->padding = ' ';
 	format->hash = 0;
+	format->zero = 0;
 	format->minus = 0;
 	format->plus = 0;
 	format->space = 0;
-	format->zero = 0;
 	format->dot = 0;
 	format->width = 0;
-	format->precision = 0;
+	format->precision = -1;
 	format->base = 10;
-	format->neg = 0;
 }
 
 /* Parsing the template string char by char. */

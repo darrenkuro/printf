@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/06 21:54:43 by dlu               #+#    #+#              #
+#    Updated: 2023/05/06 21:54:59 by dlu              ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME=libftprintf.a
-SRC=ft_printf.c parse_format.c parse_nbr.c print_format.c print_arg.c print_utils.c
+SRC=ft_printf.c parse_format.c parse_nbr.c print.c utils.c
 HDIR=includes
 LIB=libft/libft.a
 LIBDIR=libft

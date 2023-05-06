@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_format.c                                     :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/05 20:12:51 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 21:51:03 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,40 @@ int	print_str(char *s, int *count, t_format format)
 	return (1);
 }
 
-void	print_nbr(long long n, char *base, int *count, t_format format)
+void	print_nbr(t_ll n, char *base, int *count, t_format format)
 {
-	int	len;
-	int	printed;
-
-	if (format.type == 'd' || format.type == 'i')
-		load_nbr((int) n, base, &format);
-	else if (format.type == 'x' || format.type == 'X' || format.type == 'u')
-		load_nbr_u((unsigned long long) n, base, &format);
-	len = ft_strlenf(format.num, format);
-	if (format.width)
-	{
-		printed = print_padding(' ', format.width - len);
-		*count += printed;
-		format.width -= printed;
-	}
-	print_prefix(count, &format);
+	format.nbr = n;
+	parse_nbr(format.nbr, base, &format);
 	print_str(format.num, count, format);
+	free(format.num);
 }
 
 void	print_ptr(void *p, int *count, t_format format)
 {
 	if (!p && print_str(NULL_PTR, count, format))
 		return ;
-	load_nbr_ptr(p, HEXL, &format);
+	format.nbr = (t_ll) p;
+	parse_nbr(format.nbr, HEXL, &format);
 	print_str(format.num, count, format);
+	free(format.num);
+}
+
+void	print_arg(va_list *args, t_format format, int *count)
+{
+	if (format.type == 'c')
+		print_char(va_arg(*args, int), count, format);
+	else if (format.type == 's')
+		print_str(va_arg(*args, char *), count, format);
+	else if (format.type == 'p')
+		print_ptr(va_arg(*args, void *), count, format);
+	else if (format.type == 'd' || format.type == 'i')
+		print_nbr((t_ll) va_arg(*args, int), DEC, count, format);
+	else if (format.type == 'x')
+		print_nbr((t_ll) va_arg(*args, unsigned int), HEXL, count, format);
+	else if (format.type == 'X')
+		print_nbr((t_ll) va_arg(*args, unsigned int), HEXU, count, format);
+	else if (format.type == 'u')
+		print_nbr((t_ll) va_arg(*args, unsigned int), DEC, count, format);
+	else if (format.type == '%')
+		print_char('%', count, format);
 }
