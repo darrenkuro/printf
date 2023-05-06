@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 22:22:08 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:27:49 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	reset_format(t_format *format)
 	format->dot = 0;
 	format->zero = 0;
 	format->width = 0;
-	format->precision = -1;
+	format->precision = 0;
 	format->base = 10;
 	format->signed_nbr = 0;
 }

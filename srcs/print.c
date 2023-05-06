@@ -6,12 +6,13 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:58:18 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 22:04:40 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:48:46 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/* Handle the specifier 'c' and '%'. */
 void	print_char(char c, int *count, t_format format)
 {
 	if (!format.minus)
@@ -22,7 +23,7 @@ void	print_char(char c, int *count, t_format format)
 		*count += print_padding(format.padding, format.width - 1);
 }
 
-/* Handles output for %s, %c, %%. */
+/* Handle the specifier 's', and the number portion of 'diuxX'. */
 int	print_str(char *s, int *count, t_format format)
 {
 	int	len;
@@ -44,6 +45,7 @@ int	print_str(char *s, int *count, t_format format)
 	return (1);
 }
 
+/* Handle the specifier 'diuxX'. */
 void	print_nbr(t_ll n, const char *base, int *count, t_format format)
 {
 	format.nbr = n;
@@ -52,6 +54,7 @@ void	print_nbr(t_ll n, const char *base, int *count, t_format format)
 	free(format.num);
 }
 
+/* Handle the specifier 'p'. */
 void	print_ptr(void *p, int *count, t_format format)
 {
 	if (!p && print_str(NULL_PTR, count, format))
@@ -62,6 +65,7 @@ void	print_ptr(void *p, int *count, t_format format)
 	free(format.num);
 }
 
+/* Print the next argument based on its specifier. */
 void	print_arg(va_list *args, int *count, t_format format)
 {
 	if (format.type == 'c')

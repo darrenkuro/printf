@@ -6,14 +6,14 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:22:14 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 22:05:26 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:41:38 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-/* Returns the length of the nbr, ignoring '-'. */
+/* Return the length of the nbr, excluding '-'. */
 static int	nbr_len(t_ll n, t_format *format)
 {
 	int	len;
@@ -28,13 +28,13 @@ static int	nbr_len(t_ll n, t_format *format)
 	return (len);
 }
 
-/* Returns the length of the nbr string, excluding '\0'. */
+/* Return the length of the nbr string, excluding '\0'. */
 static int	nbr_strlen(t_ll n, t_format *format)
 {
 	int	len;
 
 	len = nbr_len(n, format);
-	if (format->dot && format->precision <= 0 && n == 0)
+	if (format->dot && !format->precision && n == 0)
 		return (0);
 	if (len < format->precision)
 		len = format->precision;
@@ -46,7 +46,7 @@ static int	nbr_strlen(t_ll n, t_format *format)
 	return (len);
 }
 
-/* */
+/* Handle the prefixes (+/-/ /0x/0X) and the precision padding. */
 static void	nbr_prefix(t_ll n, t_format *format, int len)
 {
 	if (format->signed_nbr)
@@ -71,7 +71,7 @@ static void	nbr_prefix(t_ll n, t_format *format, int len)
 		format->num[len] = '0';
 }
 
-/* */
+/* Handle the co-occurance of flag '0' and prefix(+/-/ ). */
 static void	nbr_flag_zero(t_format *format)
 {
 	if (!format->dot)
@@ -84,7 +84,7 @@ static void	nbr_flag_zero(t_format *format)
 	}
 }
 
-/* */
+/* Load the number into string and store in the format to print later. */
 void	parse_nbr(t_ll n, const char *base, t_format *format)
 {
 	int	len;

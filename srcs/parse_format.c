@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 22:25:37 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:30:57 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ static void	parse_precision(char **s, va_list *args, t_format *format)
 		(*s)++;
 		return ;
 	}
-	if (**s >= '0' && **s <= '9')
-		format->precision = 0;
 	while (**s >= '0' && **s <= '9')
 	{
 		format->precision = (format->precision * 10) + **s - '0';
