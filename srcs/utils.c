@@ -6,13 +6,13 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 06:14:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 20:28:53 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:50:38 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* Returns the length to be printed for string. */
+/* Return the length to be printed for a given string. */
 int	ft_strlenf(char *s, t_format format)
 {
 	int	i;
@@ -26,7 +26,7 @@ int	ft_strlenf(char *s, t_format format)
 	return (i);
 }
 
-/* Return the length of the padding. */
+/* Print the padding and return the length of the padding printed. */
 int	print_padding(char c, int len)
 {
 	int	i;
