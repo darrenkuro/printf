@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:31:59 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 20:28:41 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:15:18 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdio.h>
 
 # define DEC		"0123456789"
 # define HEXU		"0123456789ABCDEF"
@@ -41,22 +40,18 @@ typedef struct s_format
 	int		width;
 	int		precision;
 	int		base;
-	int		neg;
 	int		signed_nbr;
 }	t_format;
 
 int		ft_printf(const char *s, ...);
-
-void	parse_format(char **s, va_list *args, t_format *format);
-void	print_arg(va_list *args, t_format format, int *count);
-
+int		ft_strlenf(char *s, t_format format);
+int		print_padding(char c, int len);
 int		print_str(char *s, int *count, t_format format);
 void	print_char(char c, int *count, t_format format);
 void	print_ptr(void *p, int *count, t_format format);
-void	print_nbr(long long n, char *base, int *count, t_format format);
-
-int		ft_strlenf(char *s, t_format format);
-int		print_padding(char c, int len);
+void	print_arg(va_list *args, int *count, t_format format);
+void	print_nbr(t_ll n, const char *base, int *count, t_format format);
 void	parse_nbr(t_ll n, const char *base, t_format *format);
+void	parse_format(char **s, va_list *args, t_format *format);
 
 #endif

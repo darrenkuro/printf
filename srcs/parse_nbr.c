@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:22:14 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 21:53:27 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/06 22:05:26 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,20 +110,3 @@ void	parse_nbr(t_ll n, const char *base, t_format *format)
 	}
 	nbr_prefix(format->nbr, format, len);
 }
-/*
-int	main(void)
-{
-	t_format	format;
-
-	format.base = 10;
-	format.signed_nbr = 1;
-	format.precision = 0;
-	format.nbr = 1;
-	format.plus = 0;
-	parse_nbr((t_ll) format.nbr, DEC, &format);
-	printf("%s\n", format.num);
-	printf("%d\n", nbr_strlen((t_ll) format.nbr, &format));
-	printf("%04d\n", -14);
-	return (0);
-}
-*/
