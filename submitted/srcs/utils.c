@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 06:14:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 22:50:38 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/07 03:19:11 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ int	ft_strlenf(char *s, t_format format)
 		if (format.type == 's' && format.dot && i >= format.precision)
 			return (i);
 	return (i);
+}
+
+/* Malloc and initialing all values to 0. */
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ret;
+	size_t	i;
+
+	ret = malloc(count * size);
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (i < n)
+		((char *) ret)[i++] = 0;
+	return (ret);
 }
 
 /* Print the padding and return the length of the padding printed. */
