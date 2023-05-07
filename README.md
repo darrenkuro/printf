@@ -5,7 +5,7 @@
     <img alt="date" src="https://img.shields.io/static/v1?label=date&message=May%207nd,%202023&color=ff6984&logo=Cachet&logoColor=green">
     <img alt="size" src="https://img.shields.io/github/languages/code-size/darrenkuro/42_ft_printf?label=size">
     <img alt="loc" src="https://img.shields.io/tokei/lines/github/darrenkuro/42_ft_printf?label=lines">
-    <img alt="file" src="https://img.shields.io/github/directory-file-count/darrenkuro/42_ft_printf/submitted?label=files">
+    <img alt="file" src="https://img.shields.io/github/directory-file-count/darrenkuro/42_ft_printf/submitted/srcs?label=files">
     <img alt="commit" src="https://img.shields.io/github/last-commit/darrenkuro/42_ft_printf">
 </p>
 
