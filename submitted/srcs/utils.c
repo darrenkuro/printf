@@ -6,7 +6,7 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 06:14:33 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/07 03:19:11 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/07 15:53:41 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	ft_strlenf(char *s, t_format format)
 }
 
 /* Malloc and initialing all values to 0. */
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_callocn(size_t n)
 {
 	void	*ret;
 	size_t	i;
 
-	ret = malloc(count * size);
+	ret = malloc(n);
 	if (!ret)
 		return (NULL);
 	i = 0;

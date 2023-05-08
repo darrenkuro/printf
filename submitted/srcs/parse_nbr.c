@@ -6,12 +6,11 @@
 /*   By: dlu <dlu@student.42berlin.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:22:14 by dlu               #+#    #+#             */
-/*   Updated: 2023/05/06 22:50:50 by dlu              ###   ########.fr       */
+/*   Updated: 2023/05/07 15:54:58 by dlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 /* Return the length of the nbr, excluding '-'. */
 static int	nbr_len(t_ll n, t_format *format)
@@ -91,7 +90,7 @@ void	parse_nbr(t_ll n, const char *base, t_format *format)
 
 	nbr_flag_zero(format);
 	len = nbr_strlen(n, format) + 1;
-	format->num = ft_calloc(len, sizeof(char));
+	format->num = ft_callocn(len * sizeof(char));
 	if (!format->num)
 		return ;
 	format->num[--len] = '\0';
