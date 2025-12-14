@@ -10,29 +10,37 @@
 #                                                                              #
 # **************************************************************************** #
 
+# === Project Metadata
 NAME	:=	printf
-PROJECT	:=	$$YELLOW[$(NAME)]$$RESET
 TARGET	:=	libftprintf.a
 
+# === Directories
+SRCDIR	:=	src
+OBJDIR	:=	obj
 INCDIR	:=	include
 
-SRCDIR	:=	src
-_SRC	:=	ft_printf.c parse_format.c parse_nbr.c print.c utils.c
-SRC		:=	$(addprefix $(SRCDIR)/, $(_SRC))
+# === Files
+SRCS	:=	ft_printf.c parse_format.c parse_nbr.c print.c utils.c
+SRC		:=	$(addprefix $(SRCDIR)/, $(SRCS))
+OBJ		:=	$(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
-OBJDIR	:=	obj
-OBJ		:=	$(addprefix $(OBJDIR)/, $(_SRC:.c=.o))
+# === Toolchain & Flags
+CC		:=	cc
+AR		:=	ar rcs
+RM		:=	rm -f
+CFLAGS	:=	-Wall -Wextra -Werror -MMD -MP
+CPPFLAGS:=	-I $(INCDIR)
 
-CC			:=	cc
-AR			:=	ar rcs
-RM			:=	/bin/rm -f
-CFLAGS		:=	-Wall -Wextra -Werror -g -MMD -MP
-CPPFLAGS	:=	-I $(INCDIR)
+# === Build Settings
+.DEFAULT_GOAL	:= all
 
-PAD_WIDTH		?=	19
-.DEFAULT_GOAL	:=	all
-.SILENT:
+PADDING	?=	0 # Inherited label length for alignment
+DEBUG	?=	0
+ifeq ($(DEBUG),1)
+	CFLAGS	+=	-g
+endif
 
+# === Rules & Targets
 .PHONY: all
 all: $(TARGET)
 
@@ -41,17 +49,16 @@ bonus: $(TARGET)
 
 .PHONY: clean
 clean:
-	if [ -d "$(OBJDIR)" ]; then \
-		printf "%-*s 🧹 Removing object files and obj directory..." \
-		$(PAD_WIDTH) "$(PROJECT)"; \
-		$(RM) -r "$(OBJDIR)"; \
+	@if [ -d "$(OBJDIR)" ]; then \
+		printf "%-*s 🧹 Removing $(OBJDIR)..." $(PADDING) "[$(NAME)]"; \
+		$(RM) -r $(OBJDIR); \
 		echo " ✅ "; \
 	fi
 
 .PHONY: fclean
 fclean: clean
 	@if [ -f "$(TARGET)" ]; then \
-		printf "%-*s 🗑️ Removing $(TARGET)..." $(PAD_WIDTH) "$(PROJECT)"; \
+		printf "%-*s 🗑️ Removing $(TARGET)..." $(PADDING) "[$(NAME)]"; \
 		$(RM) $(TARGET); \
 		echo " ✅ "; \
 	fi
@@ -60,16 +67,19 @@ fclean: clean
 re: fclean all
 
 $(OBJDIR):
-	printf "%-*s 📁 Creating: $@ directory..." $(PAD_WIDTH) "$(PROJECT)"
-	mkdir -p $@
-	echo " ✅ "
+	@printf "%-*s 📁 Creating: $@ directory..." $(PADDING) "[$(NAME)]"
+	@mkdir -p $@
+	@echo " ✅ "
 
 $(TARGET): $(OBJ)
-	printf "%-*s 📦 Building: $@" $(PAD_WIDTH) "$(PROJECT)"
-	$(AR) $@ $^
-	echo " ✅ "
+	@printf "%-*s 📦 Building: $@" $(PADDING) "[$(NAME)]"
+	@$(AR) $@ $^
+	@echo " ✅ "
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	printf "%-*s ⚙️ Compiling: $<..." $(PAD_WIDTH) "$(PROJECT)"
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
-	echo " ✅ "
+	@printf "%-*s ⚙️ Compiling: $<..." $(PADDING) "[$(NAME)]"
+	@$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
+	@echo " ✅ "
+
+.DELETE_ON_ERROR:     # Delete target build that's incomplete
+-include $(OBJ:.o=.d) # Dependency injection
