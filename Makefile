@@ -10,31 +10,31 @@
 #                                                                              #
 # **************************************************************************** #
 
-# === Project Metadata
+# ------------------------ Project Metadata
 NAME	:=	printf
 TARGET	:=	libftprintf.a
 
-# === Directories
+# ------------------------ Directories
 SRCDIR	:=	src
 OBJDIR	:=	obj
 INCDIR	:=	include
 
-# === Files
-SRCS	:=	ft_printf.c parse_format.c parse_nbr.c print.c utils.c
-SRC		:=	$(addprefix $(SRCDIR)/, $(SRCS))
-OBJ		:=	$(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+# ------------------------ Files
+_SRC	:=	ft_printf.c parse_format.c parse_nbr.c print.c utils.c
+SRC		:=	$(addprefix $(SRCDIR)/, $(_SRC))
+OBJ		:=	$(addprefix $(OBJDIR)/, $(_SRC:.c=.o))
 
-# === Toolchain & Flags
+# ------------------------ Toolchain & Flags
 CC		:=	cc
 AR		:=	ar rcs
 RM		:=	rm -f
 CFLAGS	:=	-Wall -Wextra -Werror -MMD -MP
 CPPFLAGS:=	-I $(INCDIR)
 
-# === Build Settings
+# ------------------------ Build Settings
 .DEFAULT_GOAL	:= all
 
-PADDING	?=	0 # Inherited label length for alignment
+PAD	?=	0 # Inherited label length for alignment
 DEBUG	?=	0
 ifeq ($(DEBUG),1)
 	CFLAGS	+=	-g
@@ -50,7 +50,7 @@ bonus: $(TARGET)
 .PHONY: clean
 clean:
 	@if [ -d "$(OBJDIR)" ]; then \
-		printf "%-*s 🧹 Removing $(OBJDIR)/..." $(PADDING) "[$(NAME)]"; \
+		printf "%-*s 🧹 Removing $(OBJDIR)/..." $(PAD) "[$(NAME)]"; \
 		$(RM) -r $(OBJDIR); \
 		echo " ✅ "; \
 	fi
@@ -58,7 +58,7 @@ clean:
 .PHONY: fclean
 fclean: clean
 	@if [ -f "$(TARGET)" ]; then \
-		printf "%-*s 🗑️ Removing $(TARGET)..." $(PADDING) "[$(NAME)]"; \
+		printf "%-*s 🗑️ Removing $(TARGET)..." $(PAD) "[$(NAME)]"; \
 		$(RM) $(TARGET); \
 		echo " ✅ "; \
 	fi
@@ -67,17 +67,17 @@ fclean: clean
 re: fclean all
 
 $(OBJDIR):
-	@printf "%-*s 📁 Creating: $@ directory..." $(PADDING) "[$(NAME)]"
+	@printf "%-*s 📁 Creating: $@ directory..." $(PAD) "[$(NAME)]"
 	@mkdir -p $@
 	@echo " ✅ "
 
 $(TARGET): $(OBJ)
-	@printf "%-*s 📦 Building: $@" $(PADDING) "[$(NAME)]"
+	@printf "%-*s 📦 Building: $@" $(PAD) "[$(NAME)]"
 	@$(AR) $@ $^
 	@echo " ✅ "
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	@printf "%-*s ⚙️ Compiling: $<..." $(PADDING) "[$(NAME)]"
+	@printf "%-*s ⚙️ Compiling: $<..." $(PAD) "[$(NAME)]"
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 	@echo " ✅ "
 
