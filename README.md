@@ -11,6 +11,9 @@
 
 ---
 
+## 🚀 Overview
+Printf is one of the early projects in 42’s core curriculum. It focuses on rebuilding the standard C printf function from scratch—handling formatted output, parsing conversion specifiers, managing variadic arguments, and implementing flag behaviors. The project emphasizes precise control over data formatting, a deep understanding of output buffering, and the inner workings of one of C’s most powerful and commonly used standard functions.
+
 ## 🧰 Tech Stack: ![C](https://img.shields.io/badge/-C-A8B9CC?style=flat-square&logo=C&logoColor=black) ![Make](https://img.shields.io/badge/-Make-000000?style=flat-square&logo=gnu&logoColor=white)
 
 ## 📦 Features
