@@ -50,7 +50,7 @@ bonus: $(TARGET)
 .PHONY: clean
 clean:
 	@if [ -d "$(OBJDIR)" ]; then \
-		printf "%-*s 🧹 Removing $(OBJDIR)..." $(PADDING) "[$(NAME)]"; \
+		printf "%-*s 🧹 Removing $(OBJDIR)/..." $(PADDING) "[$(NAME)]"; \
 		$(RM) -r $(OBJDIR); \
 		echo " ✅ "; \
 	fi
